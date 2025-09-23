@@ -7,3 +7,15 @@ btns.forEach((btn) => {
         btn.classList.toggle("active");
     })
 })
+
+btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const targetID = btn.textContent.trim().toLowerCase();
+        const template = document.querySelector(`#templates #${targetID}`);
+
+        if (template) {
+            const clone = template.cloneNode(true);
+            container.appendChild(clone);
+        }
+    });
+});
