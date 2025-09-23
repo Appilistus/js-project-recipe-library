@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>Recipe Library</h1>
+  </header>
+  <div class="button-container">
+    <!-- filter on kitchen -->
+    <div class="filter-container">
+      <div class="filter">
+        <div class="filter-text">
+          <h3>Filter on kitchen</h3>
+        </div>
+      </div>
+      <div class="filter-button">
+        <ul class="filter">
+          <li><button class="filter-btn">All</button></li>
+          <li><button class="filter-btn">Italy</button></li>
+          <li><button class="filter-btn">USA</button></li>
+          <li><button class="filter-btn">China</button></li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- sort on time -->
+    <div class="sort-container">
+      <div class="sort-text">
+        <h3>Sort on time</h3>
+      </div>
+      <div class="sort-button">
+        <ul class="sort">
+          <li><button class="sort-btn">Descending</button></li>
+          <li><button class="sort-btn">Ascending</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <!-- articles -->
+  <article class="cards">
+    <!-- temporary placeholder -->
+    <div class="temporary-placeholder">
+      <h3>Temporary placeholder for filters/sorting options</h3>
+      <div class="placaholder" id="text-container">
+        <!-- here I have the texts -->
+      </div>
+      <div class="templates" style="display: none;">
+        <p class="placeholder-text" id="all">You eat everything, maybe liver then?</p>
+        <p class="placeholder-text" id="italy">Are you a pasta or a pizza person?</p>
+        <p class="placeholder-text" id="usa">Cranberry sauce?</p>
+        <p class="placeholder-text" id="china">You chose Chinese</p>
+        <p class="placeholder-text" id="descending">You are in a hurry mate?</p>
+        <p class="placeholder-text" id="ascending">You want to impress on someone?</p>
+      </div>
+    </div>
+    <!-- recipe cards -->
+    <div class="recipe-card">
+      <img 
+        src="./image/pizza.jpg" 
+        alt="a picture of an American food">
+      <h3 class="recipe-title">Temporary placeholder recipe</h3>
+      <h4><b>Cuisine:</b> American</h4>
+      <h4><b>Time:</b> 1h 30min</h4>
+      <span class="line"></span>
+      <h4><b>Ingredients</b></h4>
+      <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
+      <p>1/2 teaspoon coarse salt</p>
+      <p>1/2 teaspoon Mrs. Dash seasoning</p>
+      <p>1/4 teaspoon freshly ground black pepper</p>
+    </div>
+    <div class="recipe-card">
+      <img 
+        src="./image/pizza.jpg" 
+        alt="a picture of an American food">
+      <h3 class="recipe-title">Temporary placeholder recipe</h3>
+      <h4><b>Cuisine:</b> American</h4>
+      <h4><b>Time:</b> 1h 30min</h4>
+      <span class="line"></span>
+      <h4><b>Ingredients</b></h4>
+      <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
+      <p>1/2 teaspoon coarse salt</p>
+      <p>1/2 teaspoon Mrs. Dash seasoning</p>
+      <p>1/4 teaspoon freshly ground black pepper</p>
+    </div>
+    <div class="recipe-card">
+      <img 
+        src="./image/pizza.jpg" 
+        alt="a picture of an American food">
+      <h3 class="recipe-title">Temporary placeholder recipe</h3>
+      <h4><b>Cuisine:</b> American</h4>
+      <h4><b>Time:</b> 1h 30min</h4>
+      <span class="line"></span>
+      <h4><b>Ingredients</b></h4>
+      <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
+      <p>1/2 teaspoon coarse salt</p>
+      <p>1/2 teaspoon Mrs. Dash seasoning</p>
+      <p>1/4 teaspoon freshly ground black pepper</p>
+    </div>
+  </article>
+  <script src="script.js"></script>  
+</body>
+</html>
