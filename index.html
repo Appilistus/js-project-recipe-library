@@ -4,104 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Recipe Library</title>
 </head>
 <body>
-  <header>
-    <h1>Recipe Library</h1>
-  </header>
-  <div class="button-container">
-    <!-- filter on kitchen -->
-    <div class="filter-container">
-      <div class="filter">
-        <div class="filter-text">
-          <h3>Filter on kitchen</h3>
+    <header>
+        <h1>Recipe Library</h1>
+    </header>
+        <div class="button-container">
+        <!-- filter on kitchen -->
+            <div class="filter-container">
+                <div class="filter">
+                    <div class="filter-text">
+                    <h3>Filter on kitchen</h3>
+                    </div>
+                </div>
+                <div class="filter-buttons">
+                    <ul class="filter">
+                    <li><button class="filter-btn">All</button></li>
+                    <li><button class="filter-btn">Italy</button></li>
+                    <li><button class="filter-btn">USA</button></li>
+                    <li><button class="filter-btn">China</button></li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- sort on time -->
+            <div class="sort-container">
+                <div class="sort-text">
+                    <h3>Sort on time</h3>
+                </div>
+                <div class="sort-buttons">
+                    <ul class="sort">
+                    <li><button class="sort-btn">Descending</button></li>
+                    <li><button class="sort-btn">Ascending</button></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="filter-button">
-        <ul class="filter">
-          <li><button class="filter-btn">All</button></li>
-          <li><button class="filter-btn">Italy</button></li>
-          <li><button class="filter-btn">USA</button></li>
-          <li><button class="filter-btn">China</button></li>
-        </ul>
-      </div>
-    </div>
-  
-    <!-- sort on time -->
-    <div class="sort-container">
-      <div class="sort-text">
-        <h3>Sort on time</h3>
-      </div>
-      <div class="sort-button">
-        <ul class="sort">
-          <li><button class="sort-btn">Descending</button></li>
-          <li><button class="sort-btn">Ascending</button></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-    <!-- articles -->
-  <article class="cards">
-    <!-- temporary placeholder -->
-    <div class="temporary-placeholder">
-      <h3>Temporary placeholder for filters/sorting options</h3>
-      <div class="placeholder" id="text-container">
-        <!-- here I will have the texts -->
-      </div>
-      <div id="templates" style="display: none;">
-        <p id="all">You eat everything, maybe liver then?</p>
-        <p id="italy">Are you a pasta or a pizza person?</p>
-        <p id="usa">Cranberry sauce?</p>
-        <p id="china">You chose Chinese</p>
-        <p id="descending">You are in a hurry mate?</p>
-        <p id="ascending">You want to impress on someone?</p>
-      </div>
-    </div>
-    <!-- recipe cards -->
-    <div class="recipe-card">
-      <img 
-        src="./image/pizza.jpg" 
-        alt="a picture of an American food">
-      <h3 class="recipe-title">Temporary placeholder recipe</h3>
-      <h4><b>Cuisine:</b> American</h4>
-      <h4><b>Time:</b> 1h 30min</h4>
-      <span class="line"></span>
-      <h4><b>Ingredients</b></h4>
-      <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
-      <p>1/2 teaspoon coarse salt</p>
-      <p>1/2 teaspoon Mrs. Dash seasoning</p>
-      <p>1/4 teaspoon freshly ground black pepper</p>
-    </div>
-    <div class="recipe-card">
-      <img 
-        src="./image/pizza.jpg" 
-        alt="a picture of an American food">
-      <h3 class="recipe-title">Temporary placeholder recipe</h3>
-      <h4><b>Cuisine:</b> American</h4>
-      <h4><b>Time:</b> 1h 30min</h4>
-      <span class="line"></span>
-      <h4><b>Ingredients</b></h4>
-      <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
-      <p>1/2 teaspoon coarse salt</p>
-      <p>1/2 teaspoon Mrs. Dash seasoning</p>
-      <p>1/4 teaspoon freshly ground black pepper</p>
-    </div>
-    <div class="recipe-card">
-      <img 
-        src="./image/pizza.jpg" 
-        alt="a picture of an American food">
-      <h3 class="recipe-title">Temporary placeholder recipe</h3>
-      <h4><b>Cuisine:</b> American</h4>
-      <h4><b>Time:</b> 1h 30min</h4>
-      <span class="line"></span>
-      <h4><b>Ingredients</b></h4>
-      <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
-      <p>1/2 teaspoon coarse salt</p>
-      <p>1/2 teaspoon Mrs. Dash seasoning</p>
-      <p>1/4 teaspoon freshly ground black pepper</p>
-    </div>
-  </article>
-  <script src="script.js"></script>  
+        <!-- articles -->
+    <article class="cards">
+        <!-- temporary placeholder -->
+        <div class="temporary-placeholder">
+            <h3>Temporary placeholder for filters/sorting options</h3>
+        <div class="placeholder" id="text-container">
+            <!-- here I will have the texts -->
+        </div>
+        <div id="templates" style="display: none;">
+            <p id="all">You eat everything, maybe liver then?</p>
+            <p id="italy">Are you a pasta or a pizza person?</p>
+            <p id="usa">Cranberry sauce?</p>
+            <p id="china">You chose Chinese</p>
+            <p id="descending">You are in a hurry mate?</p>
+            <p id="ascending">You want to impress on someone?</p>
+        </div>
+        </div>
+        <!-- recipe cards -->
+        <div class="recipe-card">
+            <img 
+                src="./image/focaccia.jpg" 
+                alt="a picture of focaccia">
+            <h3 class="recipe-title">Cheat's cheesy Focaccia</h3>
+            <hr class="line"></hr>
+            <h4><b>Cuisine:</b> Italian</h4>
+            <h4><b>Time:</b> 40 minutes</h4>
+            <hr class="line"></hr>
+            <h4><b>Ingredients</b></h4>
+            <p>500 pack bread mix</p>
+            <p>2tbsp. olive oil, plus a little extra for drizzling</p>
+            <p>25g parmesan (or vegetarian alternative), grated</p>
+            <p>75g dolcelatte cheese (or vegetarian alternative)</p>
+        </div>
+        <div class="recipe-card">
+            <img 
+                src="./image/fish.jpg" 
+                alt="a picture of a burnt-scallion fish">
+            <h3 class="recipe-title">Burnt-Scallion Fish</h3>
+            <hr class="line"></hr>
+            <h4><b>Cuisine:</b> Chinese</h4>
+            <h4><b>Time:</b> 1h 10 minutes</h4>
+            <hr class="line"></hr>
+            <h4><b>Ingredients</b></h4>
+            <p>2 bunches scallions</p>
+            <p>8 tbsp. butter</p>
+            <p>2 8-oz. fish filets</p>
+        </div>
+        <div class="recipe-card">
+            <img 
+                src="./image/chiken.jpg" 
+                alt="a picture of baked chicken">
+            <h3 class="recipe-title">Backed Chicken</h3>
+            <hr class="line"></hr>
+            <h4><b>Cuisine:</b> American</h4>
+            <h4><b>Time:</b> 1h 30min</h4>
+            <hr class="line"></hr>
+            <h4><b>Ingredients</b></h4>
+            <p>6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on</p>
+            <p>1/2 tsp. coarse salt</p>
+            <p>1/2 tsp. Mrs. Dash seasoning</p>
+            <p>1/4 tsp. freshly ground black pepper</p>
+        </div>
+        <div class="recipe-card">
+            <img 
+                src="./image/deep fry.jpg" 
+                alt="a picture of an deep fried fish bones">
+            <h3 class="recipe-title">Deep Fried Fish Bones</h3>
+            <hr class="line"></hr>
+            <h4><b>Cuisine:</b> South-East Asia</h4>
+            <h4><b>Time:</b> 30minutes</h4>
+            <hr class="line"></hr>
+            <h4><b>Ingredients</b></h4>
+            <p>8 small whiting fish or smelt</p>
+            <p>4 cups vegetable oil</p>
+        </div>
+    </article>
+    <script src="script.js"></script>  
 </body>
 </html>
