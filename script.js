@@ -52,176 +52,236 @@ sortBtn.forEach(sortButton => {
 // recipes
 //===============================
 
-const recepis = [
+const recipes = [
     {
     id: 1,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
-    readyInMinutes: 30,
+    title: "Cheat's cheesy Focaccia",
+    image: "image/focaccia.jpg",
+    readyInMinutes: 40,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "Italian",
     ingredients: [
-        "red lentils",
-        "carrots",
-        "onion",
-        "garlic",
-        "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
-        "olive oil",
-        "salt"
+        "500 pack bread mix",
+        "2 tbsp. olive oil, plus a little extra for drizzling",
+        "25g parmesan (or vegetarian alternative), grated",
+        "75g dolcelatte cheese (or vegetarian alternative)",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
     {
     id: 2,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
-    readyInMinutes: 30,
+    title: "Burnt-Scallion Fish",
+    image: "image/fish.jpg",
+    readyInMinutes: 70,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "Chinese",
     ingredients: [
-        "red lentils",
-        "carrots",
-        "onion",
-        "garlic",
-        "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
-        "olive oil",
-        "salt"
+        "2 bunches scallions",
+        "8 tbsp. butter",
+        "2 8-oz. fish filets",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
     {
     id: 3,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
-    readyInMinutes: 30,
+    title: "Backed Chicken",
+    image: "image/chicken.jpg",
+    readyInMinutes: 90,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "American",
     ingredients: [
-        "red lentils",
-        "carrots",
-        "onion",
-        "garlic",
-        "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
-        "olive oil",
-        "salt"
+        "6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on",
+        "1/2 tsp. coarse salt",
+        "1/2 tsp. Mrs. Dash seasoning",
+        "1/4 tsp. freshly ground black pepper",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
     {
     id: 4,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
+    title: "Deep Fried Fish Bones",
+    image: "image/deep fry.jpg",
     readyInMinutes: 30,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "South-East Asia",
     ingredients: [
-        "red lentils",
-        "carrots",
-        "onion",
-        "garlic",
-        "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
-        "olive oil",
-        "salt"
+        "8 small whiting fish or smelt",
+        "4 cups vegetable oil",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
     {
     id: 5,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
-    readyInMinutes: 30,
+    title: "Vegetarian Pesto Pasta",
+    image: "image/fish.jpg",
+    readyInMinutes: 25,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "Italian",
     ingredients: [
-        "red lentils",
-        "carrots",
-        "onion",
+        "pasta",
+        "basil",
+        "parmesan cheese",
         "garlic",
-        "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
+        "pine nuts",
         "olive oil",
-        "salt"
+        "salt",
+        "black pepper",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
     {
     id: 6,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
-    readyInMinutes: 30,
+    title: "Dairy-Free Tacos",
+    image: "image/chicken.jpg",
+    readyInMinutes: 15,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "Mexican",
     ingredients: [
-        "red lentils",
-        "carrots",
-        "onion",
-        "garlic",
-        "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
-        "olive oil",
-        "salt"
+        "corn tortillas",
+        "ground beef",
+        "taco seasoning",
+        "lettuce",
+        "tomato",
+        "avocado",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
     {
     id: 7,
-    title: "Vegan Lentil Soup",
-    image: "./chicken.webp",
-    readyInMinutes: 30,
+    title: "Beef Stew",
+    image: "image/deep fry.jpg",
+    readyInMinutes: 90,
     servings: 4,
     sourceUrl: "https://example.com/vegan-lentil-soup",
     diets: ["vegan"],
-    cuisine: "Mediterranean",
+    cuisine: "European",
     ingredients: [
-        "red lentils",
+        "beef chunks",
+        "potatoes",
         "carrots",
         "onion",
         "garlic",
         "tomato paste",
-        "cumin",
-        "paprika",
-        "vegetable broth",
-        "olive oil",
-        "salt"
+        "beef broth",
+        "red wine",
+        "bay leaves",
+        "thyme",
+        "salt",
+        "black pepper",
+        "flour",
+        "celery",
+        "mushrooms",
     ],
     pricePerServing: 2.5,
     popularity: 85
     },
 ]
+
+const container = document.querySelector(".recipe-container")
+
+//===============================
+// display recipes
+//===============================
+
+const displayRecipes = (recipeArray) => {
+    container.innerHTML = "" //reset the container
+
+    recipeArray.forEach(recipe => {
+        container.innerHTML += `
+        <div class="recipe-card">
+            <p>${recipe.title}</p>
+            <img src="${recipe.image}" alt= "picture of food"/>
+        </div>
+        `
+    })
+}
+
+displayRecipes(recipes);
+
+//===============================
+// filter recipes
+//===============================
+
+const italyBtn = document.getElementById("italy")
+const usaBtn = document.getElementById("usa")
+const chinaBtn = document.getElementById("china")
+const europeanBtn = document.getElementById("european")
+const mexicanBtn = document.getElementById("mexican")
+
+allBtn.addEventListener("click", () => {
+    displayRecipes(recipes);
+})
+
+italyBtn.addEventListener("click", () => {
+    const italianRecipes = recipes.filter((recipe) =>
+    recipe.cuisine.includes("Italian")
+    )
+    displayRecipes(italianRecipes)
+})
+
+usaBtn.addEventListener("click", () => {
+    const usaRecipes = recipes.filter((recipe) =>
+    recipe.cuisine.includes("American")
+    )
+    displayRecipes(usaRecipes)
+})
+
+chinaBtn.addEventListener("click", () => {
+    const chinaRecipes = recipes.filter((recipe) =>
+    recipe.cuisine.includes("Chinese")
+    )
+    displayRecipes(chinaRecipes)
+})
+
+europeanBtn.addEventListener("click", () => {
+    const europeanRecipes = recipes.filter((recipe) =>
+    recipe.cuisine.includes("European")
+    )
+    displayRecipes(europeanRecipes)
+})
+
+mexicanBtn.addEventListener("click", () => {
+    const mexicanRecipes = recipes.filter((recipe) =>
+    recipe.cuisine.includes("Mexican")
+    )
+    displayRecipes(mexicanRecipes)
+})
+
+//===============================
+// sort recipes
+//===============================
+
+const discBtn = getElementById("disc")
+const ascBtn = getElementById("asc")
+
+
+
+//===============================
+// pic a random recipe
+//===============================
+
+
+
+
+
 
 // old JS below ===========================================================
 
@@ -235,17 +295,6 @@ const recepis = [
 //     })
 // })
 
-// btns.forEach((btn) => {
-//     btn.addEventListener("click", () => {
-//         const targetID = btn.textContent.trim().toLowerCase();
-//         const template = document.querySelector(`#templates #${targetID}`);
-
-//         if (template) {
-//             const clone = template.cloneNode(true);
-//             container.appendChild(clone);
-//         }
-//     });
-// });
 
 // btns.forEach((btn) => {
 //     // add click event on each button
