@@ -1,11 +1,13 @@
 const allBtn = document.getElementById("all")
 const filterBtn = document.querySelectorAll(".filter-btn")
-const defaultSortBtn = document.getElementById("disc")
+
 const sortBtn = document.querySelectorAll(".sort-btn")
-const randomBtn = document.querySelector(".random-button")
+const descBtn = document.getElementById("desc")
+const ascBtn = document.getElementById("asc")
+
+const randomBtn = document.querySelector(".random-btn")
 
 allBtn.classList.add("active") //default select
-defaultSortBtn.classList.add("active")//default select
 
 //===============================
 // filter buttons
@@ -47,6 +49,13 @@ sortBtn.forEach(sortButton => {
     });
 });
 
+//===============================
+// random buttons - change the color when clicked
+//===============================
+
+randomBtn.addEventListener("click", () => {
+    randomBtn.classList.toggle("active");
+})
 
 //===============================
 // recipes
@@ -207,8 +216,14 @@ const displayRecipes = (recipeArray) => {
     recipeArray.forEach(recipe => {
         container.innerHTML += `
         <div class="recipe-card">
-            <p>${recipe.title}</p>
             <img src="${recipe.image}" alt= "picture of food"/>
+            <h3>${recipe.title}</h3>
+            <hr class="line">
+            <h4><b>Cuisine: </b>${recipe.cuisine}</h4>
+            <h4><b>Time: </b>${recipe.readyInMinutes} minutes</h4>
+            <hr class="line">
+            <h4>Ingredients</h4>
+            <ul>${recipe.ingredients.join("<br>")}</ul>
         </div>
         `
     })
@@ -265,36 +280,37 @@ mexicanBtn.addEventListener("click", () => {
     displayRecipes(mexicanRecipes)
 })
 
-//===============================
-// sort recipes
-//===============================
-
-const discBtn = getElementById("disc")
-const ascBtn = getElementById("asc")
 
 
 
 //===============================
-// pic a random recipe
+// sort recipes (sort by time)
 //===============================
 
+descBtn.addEventListener("click", () => {
+    const descendingRecipes = [...recipes].sort((a,b) => b.readyInMinutes - a.readyInMinutes)
+    displayRecipes(descendingRecipes)
+})
+
+ascBtn.addEventListener("click", () => {
+    const ascendingRecipes = [...recipes].sort((a,b) => a.readyInMinutes - b.readyInMinutes)
+    displayRecipes(ascendingRecipes)
+})
 
 
+//===============================
+// pick a random recipe
+//===============================
+
+randomBtn.addEventListener("click", () => {
+    const randomIndex = Math.floor(Math.random() * recipes.length);
+    const randomRecipe = recipes[randomIndex];
+    displayRecipes([randomRecipe])
+})
 
 
 
 // old JS below ===========================================================
-
-// const btns = document.querySelectorAll(".filter-btn, .sort-btn, .random-btn");
-// const container = document.getElementById("text-container");
-
-// btns.forEach((btn) => {
-//     // change the color of the button when it's clicked
-//     btn.addEventListener("click", () => {
-//         btn.classList.toggle("active");
-//     })
-// })
-
 
 // btns.forEach((btn) => {
 //     // add click event on each button
