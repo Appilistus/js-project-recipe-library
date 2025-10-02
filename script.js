@@ -235,52 +235,49 @@ displayRecipes(recipes);
 // filter recipes
 //===============================
 
-const italyBtn = document.getElementById("italy")
-const usaBtn = document.getElementById("usa")
-const chinaBtn = document.getElementById("china")
-const europeanBtn = document.getElementById("european")
-const mexicanBtn = document.getElementById("mexican")
+// save the selected filter
+let activeFilters = []
 
+// show all recipes when "all" button is clicked
 allBtn.addEventListener("click", () => {
+    activeFilters = [];
     displayRecipes(recipes);
-})
+});
 
-italyBtn.addEventListener("click", () => {
-    const italianRecipes = recipes.filter((recipe) =>
-    recipe.cuisine.includes("Italian")
-    )
-    displayRecipes(italianRecipes)
-})
+// 
+filterBtn.forEach(button => {
+    if (button.id === "all")return;
 
-usaBtn.addEventListener("click", () => {
-    const usaRecipes = recipes.filter((recipe) =>
-    recipe.cuisine.includes("American")
-    )
-    displayRecipes(usaRecipes)
-})
+    button.addEventListener("click", () => {
+        const cuisine = button.id;
 
-chinaBtn.addEventListener("click", () => {
-    const chinaRecipes = recipes.filter((recipe) =>
-    recipe.cuisine.includes("Chinese")
-    )
-    displayRecipes(chinaRecipes)
-})
+        if (activeFilters.includes(cuisine)) {
+            activeFilters = activeFilters.filter(f => f !== cuisine); // f = filter name
+        } else {
+            // 
+            activeFilters.push(cuisine);
+        }
 
-europeanBtn.addEventListener("click", () => {
-    const europeanRecipes = recipes.filter((recipe) =>
-    recipe.cuisine.includes("European")
-    )
-    displayRecipes(europeanRecipes)
-})
+        applyFilters();
+    });
+});
 
-mexicanBtn.addEventListener("click", () => {
-    const mexicanRecipes = recipes.filter((recipe) =>
-    recipe.cuisine.includes("Mexican")
-    )
-    displayRecipes(mexicanRecipes)
-})
+const applyFilters = () => {
+    if (activeFilters.length === 0) {
+        displayRecipes(recipes);
+        return;
+    }
 
+    const filtered = recipes.filter(recipe =>
+        activeFilters.includes(recipe.cuisine.toLowerCase())
+    );
 
+    if (filtered.length > 0) {
+        displayRecipes(filtered);
+    } else {
+        container.innerHTML = `<p class="no-results">No results</p>`;
+    }
+}
 
 
 //===============================
@@ -288,14 +285,42 @@ mexicanBtn.addEventListener("click", () => {
 //===============================
 
 descBtn.addEventListener("click", () => {
-    const descendingRecipes = [...recipes].sort((a,b) => b.readyInMinutes - a.readyInMinutes)
-    displayRecipes(descendingRecipes)
+    currentSort = "desc";
+    applyKitchenFilters();
 })
 
 ascBtn.addEventListener("click", () => {
-    const ascendingRecipes = [...recipes].sort((a,b) => a.readyInMinutes - b.readyInMinutes)
-    displayRecipes(ascendingRecipes)
+    currentSort = "asc";
+    applyKitchenFilters();
 })
+
+// filter + sort function
+const applyKitchenFilters = () => {
+    let filtered = [];
+
+    // sort all recipes
+    if (activeFilters.length === 0) {
+        filtered = [...recipes];
+    } else {
+        filtered = recipes.filter(recipe =>
+            activeFilters.includes(recipe.cuisine.toLocaleLowerCase())
+        );
+    }
+
+    // sort filtered recipes
+    if (currentSort === "desc") {
+        filtered.sort((a,b) => b.readyInMinutes - a.readyInMinutes);
+    } else {
+        filtered.sort((a,b) => a.readyInMinutes - b.readyInMinutes);
+    }
+
+    // display recipes
+    if (filtered.length > 0) {
+        displayRecipes(filtered);
+    } else {
+        container.innerHTML = `<p class="no-results>No results</p>`;
+    }
+};
 
 
 //===============================
@@ -307,55 +332,3 @@ randomBtn.addEventListener("click", () => {
     const randomRecipe = recipes[randomIndex];
     displayRecipes([randomRecipe])
 })
-
-
-
-// old JS below ===========================================================
-
-// btns.forEach((btn) => {
-//     // add click event on each button
-//     btn.addEventListener("click", () => {
-//         // add text in HTML
-//         const textContainer = document.querySelector("#text-container");
-//             if (btn.textContent.trim() === "All") {
-//                 // create p tag
-//                 const p = document.createElement("p");
-//                 // put text in p
-//                 p.textContent = "You eat everything, maybe liver then?";
-//                 // add p in #text-container
-//                 textContainer.appendChild(p);
-//             }
-
-//             if (btn.textContent.trim() === "Italy") {
-//                 const p = document.createElement("p");
-//                 p.textContent = "Are you a pasta or a pizza person?";
-//                 textContainer.appendChild(p)
-//             }
-
-//             if (btn.textContent.trim() === "USA") {
-//                 const p = document.createElement("p");
-//                 p.textContent = "Cranberry sauce?";
-//                 textContainer.appendChild(p);
-//             }
-
-//             if (btn.textContent.trim() === "China") {
-//                 const p = document.createElement("p");
-//                 p.textContent = "You chose Chinese";
-//                 textContainer.appendChild(p);
-//             }
-
-//             if (btn.textContent.trim() === "Descending") {
-//                 const p = document.createElement("p");
-//                 p.textContent = "You ar in a hurry mate?";
-//                 textContainer.appendChild(p);
-//             }
-
-//             if (btn.textContent.trim() === "Ascending") {
-//                 const p =document.createElement("p");
-//                 p.textContent = "You want to impress on someone?";
-//                 textContainer.appendChild(p);
-//             }
-
-
-//     });
-// });
