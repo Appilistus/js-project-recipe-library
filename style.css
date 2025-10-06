@@ -127,6 +127,7 @@ style for the buttons
 .button-container {
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
 }
 
 .filter-container,
@@ -211,10 +212,11 @@ style for the buttons
 style for recipe cards
 ======================================= */
 
-.recipe-container {
+#recipe-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    margin-bottom: 50px;
 }
 
 .placeholder p {
@@ -222,14 +224,19 @@ style for recipe cards
     margin: 8px 0;
 }
 
-.recipe-title {
-    margin-left: 0;
-    margin-bottom: 10px;
+.recipe-image {
+    position: relative;
 }
 
 #like-button {
-    font-size: 20px;
-    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    background-color: white;
+    border-radius: 50%;
     border: none;
     margin: 0 0 0 auto;cursor: pointer;
 }

@@ -216,9 +216,11 @@ const displayRecipes = (recipeArray) => {
     recipeArray.forEach(recipe => {
         container.innerHTML += `
         <div class="recipe-card">
-            <img src="${recipe.image}" alt= "picture of food"/>
+            <div class="recipe-image">
+                <button id="like-button">♡</button>
+                <img src="${recipe.image}" alt= "picture of food"/>
+            </div>
             <h3>${recipe.title}</h3>
-            <button id="like-button">♡</button>
             <hr class="line">
             <h4><b>Cuisine: </b>${recipe.cuisine}</h4>
             <h4><b>Time: </b>${recipe.readyInMinutes} minutes</h4>
