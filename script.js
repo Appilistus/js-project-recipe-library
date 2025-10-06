@@ -7,6 +7,8 @@ const ascBtn = document.getElementById("asc")
 
 const randomBtn = document.querySelector(".random-btn")
 
+const container = document.getElementById("recipe-container")
+
 allBtn.classList.add("active") //default select
 
 //===============================
@@ -204,8 +206,6 @@ const recipes = [
     },
 ]
 
-const container = document.querySelector(".recipe-container")
-
 //===============================
 // display recipes
 //===============================
@@ -218,6 +218,7 @@ const displayRecipes = (recipeArray) => {
         <div class="recipe-card">
             <img src="${recipe.image}" alt= "picture of food"/>
             <h3>${recipe.title}</h3>
+            <button id="like-button">♡</button>
             <hr class="line">
             <h4><b>Cuisine: </b>${recipe.cuisine}</h4>
             <h4><b>Time: </b>${recipe.readyInMinutes} minutes</h4>
@@ -227,6 +228,8 @@ const displayRecipes = (recipeArray) => {
         </div>
         `
     })
+
+    // attachLikeEvents();
 }
 
 displayRecipes(recipes);
@@ -235,26 +238,27 @@ displayRecipes(recipes);
 // filter recipes
 //===============================
 
-// save the selected filter
+// save the selected filter here
 let activeFilters = []
 
 // show all recipes when "all" button is clicked
 allBtn.addEventListener("click", () => {
-    activeFilters = [];
+    activeFilters = []; //reset filters
     displayRecipes(recipes);
 });
 
 // 
 filterBtn.forEach(button => {
-    if (button.id === "all")return;
+    if (button.id === "all")return; // ignore the rest of the functions is "all" is clicked
 
     button.addEventListener("click", () => {
         const cuisine = button.id;
 
         if (activeFilters.includes(cuisine)) {
-            activeFilters = activeFilters.filter(f => f !== cuisine); // f = filter name
+            // remove recipes if they are already displayed 
+            activeFilters = activeFilters.filter(country => country !== cuisine);
         } else {
-            // 
+            // add the filtered recipes
             activeFilters.push(cuisine);
         }
 
@@ -263,6 +267,7 @@ filterBtn.forEach(button => {
 });
 
 const applyFilters = () => {
+    // if there are no active filters, then show all recipes
     if (activeFilters.length === 0) {
         displayRecipes(recipes);
         return;
@@ -272,6 +277,7 @@ const applyFilters = () => {
         activeFilters.includes(recipe.cuisine.toLowerCase())
     );
 
+    // if there are active recipes, show the recipes. otherwise show the text
     if (filtered.length > 0) {
         displayRecipes(filtered);
     } else {
@@ -296,14 +302,15 @@ ascBtn.addEventListener("click", () => {
 
 // filter + sort function
 const applyKitchenFilters = () => {
-    let filtered = [];
+    let filtered = []; // make an empty box
 
-    // sort all recipes
     if (activeFilters.length === 0) {
+        // if no active filter, make a copy of recipes list
         filtered = [...recipes];
     } else {
+        // if filters are active, pick up the recipes
         filtered = recipes.filter(recipe =>
-            activeFilters.includes(recipe.cuisine.toLocaleLowerCase())
+            activeFilters.includes(recipe.cuisine.toLowerCase())
         );
     }
 
@@ -318,7 +325,7 @@ const applyKitchenFilters = () => {
     if (filtered.length > 0) {
         displayRecipes(filtered);
     } else {
-        container.innerHTML = `<p class="no-results>No results</p>`;
+        container.innerHTML = `<p class="no-results">No results</p>`;
     }
 };
 
@@ -332,3 +339,62 @@ randomBtn.addEventListener("click", () => {
     const randomRecipe = recipes[randomIndex];
     displayRecipes([randomRecipe])
 })
+
+//===============================
+// like button
+//===============================
+
+// save favorite recipes
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+function attachLikeEvents() {
+    const likeButtons = document.querySelectorAll(".like-button");
+
+    likeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+        const card = button.closest(".recipe-card");
+        const recipeID = card.dataset.id;
+
+        if (favorites.includes(recipeId)) {
+            // remove recipe if it is already liked
+            favorites = favorites.filter(id => id !== recipeId);
+            button.classList.remove("liked");
+        } else {
+            // otherwise add recipe
+            favorites.push(recipeId);
+            button.classList.add("liked");
+        }
+
+        // save recipes
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        });
+    });
+}
+
+//===============================
+// show favorite recipes
+//===============================
+
+const favoriteBtn = document.querySelector(".favorites")
+
+favoriteBtn.addEventListener("click", () => {
+    const favRecipes = recipes.filter(recipe =>
+        favorites.includes(recipe.id.toString())
+    );
+
+    if (favRecipes.length >0) {
+        displayRecipes(favRecipes);
+    } else {
+        container.innerHTML = `<p class="no-results"> No favorite recipes yet</p>`;
+    }
+});
+
+
+
+//===============================
+// fetch recipes
+//===============================
+
+const API_URL = "https://api.spoonacular.com/recipes/random?number=20&e1711b2ca9f84dec882725da3bd3acfd";
+
+fetch("")

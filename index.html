@@ -9,7 +9,21 @@
 <body>
     <header>
         <h1>Recipe Library</h1>
+        <div class="favorites">❤️ My favorites</div>
     </header>
+        <!-- search field -->
+        <form 
+            action="#"
+            class="search-form">
+            <input 
+                type="text" 
+                class="text-input"
+                placeholder="Find a recipe or ingredient">
+            <button
+                type="button"
+                class="search-button"><span class="search-emoji">🔍</span></button>
+        </form>
+
         <div class="button-container">
         <!-- filter on kitchen -->
             <div class="filter-container">
@@ -58,7 +72,7 @@
         </div>
         <!-- articles -->
     <article class="cards">
-        <div class="recipe-container"></div>
+        <div id="recipe-container">Loading...</div>
     </article>
     <script src="script.js"></script>  
 </body>
