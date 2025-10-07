@@ -1,3 +1,5 @@
+const URL = "https://api.spoonacular.com/recipes/complexSearch?number=5&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=true&includeIngredients=true&addRecipeInstructions=true";
+
 const allBtn = document.getElementById("all")
 const filterBtn = document.querySelectorAll(".filter-btn")
 
@@ -207,6 +209,18 @@ const recipes = [
 ]
 
 //===============================
+// fetch recipes
+//===============================
+
+// const fetchData = async () => {
+//     const response = await fetch(URL)
+//     const data = await response.json()
+//     console.log(data)
+// }
+
+// fetchData()
+
+//===============================
 // display recipes
 //===============================
 
@@ -217,7 +231,7 @@ const displayRecipes = (recipeArray) => {
         container.innerHTML += `
         <div class="recipe-card">
             <div class="recipe-image">
-                <button id="like-button">♡</button>
+                <button class="like-button">♡</button>
                 <img src="${recipe.image}" alt= "picture of food"/>
             </div>
             <h3>${recipe.title}</h3>
@@ -231,7 +245,7 @@ const displayRecipes = (recipeArray) => {
         `
     })
 
-    // attachLikeEvents();
+    attachLikeEvents();
 }
 
 displayRecipes(recipes);
@@ -346,6 +360,15 @@ randomBtn.addEventListener("click", () => {
 // like button
 //===============================
 
+const likeButtons = document.querySelectorAll(".like-button");
+
+// change the color of the button
+likeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("liked");
+    });
+});
+
 // save favorite recipes
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
@@ -392,11 +415,39 @@ favoriteBtn.addEventListener("click", () => {
 });
 
 
-
 //===============================
-// fetch recipes
+// search recipes
 //===============================
 
-const API_URL = "https://api.spoonacular.com/recipes/random?number=20&e1711b2ca9f84dec882725da3bd3acfd";
+const searchInput = document.getElementById("text-input");
+const searchTargets = document.querySelectorAll('.recipe-card');
+const noResultsMessage = document.getElementById("no-results"); 
 
-fetch("")
+// show and hide search results
+const showSearchResult = (target) => target.style.display = "";
+const hideSearchResult = (target) => target.style.display = "none";
+
+// filter search results by keyword
+const filterSearchResults = () => {
+    const keyword = searchInput.value.trim().toLowerCase();
+    let matchFound = false;
+
+    searchTargets.forEach((target) => {
+        const text = target.textContent.toLowerCase();
+        if (text.includes(keyword)) {
+            showSearchResult(target);
+            matchFound = true;
+        } else {
+            hideSearchResult(target);
+        }
+    });
+
+    // show no results message if no hits
+    if (!matchFound) {
+        noResultsMessage.style.display = "block";
+    } else {
+        noResultsMessage.style.display = "none";
+    }
+};
+
+searchInput.addEventListener("input", filterSearchResults);
