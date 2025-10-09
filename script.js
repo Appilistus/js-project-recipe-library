@@ -1,4 +1,4 @@
-// const URL = "https://api.spoonacular.com/recipes/random?number=10&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=italian,american,chinese,european,mexican";
+const URL = "https://api.spoonacular.com/recipes/random?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd";
 
 const allBtn = document.getElementById("all")
 const filterBtn = document.querySelectorAll(".filter-btn")
@@ -17,7 +17,7 @@ allBtn.classList.add("active") //default select
 // like button
 //===============================
 
-// save favorite recipes
+// save favorite recipes in localStorage
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 const attachLikeEvents =() => {
@@ -36,12 +36,12 @@ const attachLikeEvents =() => {
             favorites = favorites.filter(fav => String(fav.id) !== recipeId);
             button.classList.remove("liked");
         } else {
-            // otherwise add recipe
+            // otherwise add recipe to my favorites
             favorites.push(recipe);
             button.classList.add("liked");
         }
 
-        // save recipes
+        // save recipes in localStorage
         localStorage.setItem("favorites", JSON.stringify(favorites));
         });
     });
@@ -59,7 +59,7 @@ favoriteBtn.addEventListener("click", () => {
     if (favorites.length > 0) {
         displayRecipes(favorites);
     } else {
-        container.innerHTML = `<p class="no-results"> No favorite recipes yet❤️</p>`;
+        container.innerHTML = `<p class="no-results"> No favorite recipes yet ❤️</p>`;
     }
 });
 
@@ -111,44 +111,81 @@ const displayRecipes = (recipeArray) => {
 // fetch recipes
 //===============================
 
-// let recipes = [];
-
-// const fetchData = async () => {
-//     try {
-//         const response = await fetch(URL);
-//         const data = await response.json();
-//         console.log("API response:", data);
-
-//         if (data.recipes && Array.isArray(data.recipes)) {
-//             recipes = data.recipes;
-//             displayRecipes(data.recipes);
-//         } else {
-//             container.innerHTML = "<p>No recipes found. Check your API key or quota.</p>";
-//         }
-//     } catch (error) {
-//         console.error("Error fetching data:", error);
-//         container.innerHTML = "<p>Failed to load recipes. Please try again later.</p>";
-//     }
-// };
-
-// ------------import backup data-----------------------------------------
-
-// Global backup data variable
-import { backupRecipes } from "./backup.js"
-
-// Global backup data variable
-console.log("backup data loaded", backupRecipes);
-
-let recipes = []; 
+let recipes = [];
 
 const fetchData = async () => {
     try {
-        recipes = backupRecipes.recipes;
-        displayRecipes(recipes);
+    // fetch the data
+    const response = await fetch(URL);
+
+    // check the status
+    if (!response.ok) {
+      // show 402/403/429 when it hits the limit
+        if (response.status === 402 || response.status === 403 || response.status === 429) {
+        showApiLimitMessage();
+        return; 
+        }
+
+      // other errors treated as normal errors
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // convert to JSON
+    const data = await response.json();
+    console.log("API response:", data);
+
+    // check the data is entered correctly
+    if (data.recipes && Array.isArray(data.recipes)) {
+        recipes = data.recipes;
+        displayRecipes(data.recipes);
+    } else {
+        container.innerHTML = "<p>No recipes found. Check your API key or quota.</p>";
+    }
+
     } catch (error) {
         console.error("Error fetching data:", error);
+        showErrorMessage();
     }
 };
+
+// API error message
+const showApiLimitMessage = () => {
+    container.innerHTML = `
+    <p class="api-error">
+        ⚠️ API limit reached for today.<br>
+        Please try again tomorrow.
+    </p>
+    `;
+};
+
+// normal error message
+const showErrorMessage = () => {
+    container.innerHTML = `
+        <p class="api-error">
+        Something went wrong while fetching recipes.<br>
+        Please try again later.
+        </p>
+    `;
+};
+
+// ------------import backup data-----------------------------------------
+
+// // Global backup data variable
+// import { backupRecipes } from "./backup.js"
+
+// // Global backup data variable
+// console.log("backup data loaded", backupRecipes);
+
+// let recipes = []; 
+
+// const fetchData = async () => {
+//     try {
+//         recipes = backupRecipes.recipes;
+//         displayRecipes(recipes);
+//     } catch (error) {
+//         console.error("Error fetching data:", error);
+//     }
+// };
 
 fetchData();
 

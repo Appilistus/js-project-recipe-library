@@ -33,7 +33,6 @@ p {
 }
 
 img {
-    /* width: 268px; */
     width: 100%;
     height: 200px;
     border-radius: 12px;
@@ -54,7 +53,7 @@ a {
 }
 
 /* ======================================
-favorite recipes
+favorite recipes button
 ======================================= */
 
 .favorites {
@@ -214,7 +213,7 @@ style for recipe cards
 #recipe-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 50px;
 }
 
@@ -252,6 +251,7 @@ style for recipe cards
 
 .view-recipe-button {
     background-color: #ff6589;
+    font-size: large;
     border: none;
     border-radius: 10px;
     width: 100%;
