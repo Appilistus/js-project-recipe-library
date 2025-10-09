@@ -186,6 +186,7 @@ const showErrorMessage = () => {
 //         console.error("Error fetching data:", error);
 //     }
 // };
+//------------------------------------------------------------------------
 
 fetchData();
 
@@ -260,7 +261,6 @@ sortBtn.forEach(sortButton => {
 });
 
 // main function : filter + sort
-
 const applyKitchenFilters = () => {
     let filtered = [...recipes]; // make a copy of all recipes
 
@@ -285,7 +285,7 @@ const applyKitchenFilters = () => {
     if (filtered.length > 0) {
         displayRecipes(filtered);
     } else {
-        container.innerHTML = `<p class="no-results">No results</p>`;
+        container.innerHTML = `<p class="no-results">No recipes found</p>`;
     }
 };
 
@@ -310,7 +310,7 @@ randomBtn.addEventListener("click", () => {
 //===============================
 
 const searchInput = document.getElementById("text-input");
-const searchTargets = document.querySelectorAll('.recipe-card');
+
 const noResultsMessage = document.getElementById("no-results"); 
 
 // show and hide search results
@@ -320,6 +320,7 @@ const hideSearchResult = (target) => target.style.display = "none";
 // filter search results by keyword
 const filterSearchResults = () => {
     const keyword = searchInput.value.trim().toLowerCase();
+    const searchTargets = document.querySelectorAll('.recipe-card');
     let matchFound = false;
 
     searchTargets.forEach((target) => {
@@ -333,7 +334,7 @@ const filterSearchResults = () => {
     });
 
     // show no results message if no hits
-    if (!matchFound) {
+    if (!matchFound && keyword.length > 0) {
         noResultsMessage.style.display = "block";
     } else {
         noResultsMessage.style.display = "none";
