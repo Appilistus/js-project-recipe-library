@@ -138,6 +138,7 @@ const fetchData = async () => {
     if (data.recipes && Array.isArray(data.recipes)) {
         recipes = data.recipes;
         displayRecipes(data.recipes);
+        searchInput.addEventListener("input", filterSearchResults); // enable search after data is loaded
     } else {
         container.innerHTML = "<p>No recipes found. Check your API key or quota.</p>";
     }
@@ -310,7 +311,6 @@ randomBtn.addEventListener("click", () => {
 //===============================
 
 const searchInput = document.getElementById("text-input");
-
 const noResultsMessage = document.getElementById("no-results"); 
 
 // show and hide search results
