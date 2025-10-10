@@ -1,14 +1,11 @@
-const URL = "https://api.spoonacular.com/recipes/random?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd";
+const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
 
 const allBtn = document.getElementById("all")
 const filterBtn = document.querySelectorAll(".filter-btn")
-
 const sortBtn = document.querySelectorAll(".sort-btn")
 const descBtn = document.getElementById("desc")
 const ascBtn = document.getElementById("asc")
-
 const randomBtn = document.querySelector(".random-btn")
-
 const container = document.getElementById("recipe-container")
 
 allBtn.classList.add("active") //default select
@@ -27,7 +24,7 @@ const attachLikeEvents =() => {
         button.addEventListener("click", () => {
         const card = button.closest(".recipe-card");
         const recipeId = String(card.dataset.id);
-        const recipe = recipes.find(r => String(r.id) === recipeId);
+        const recipe = results.find(r => String(r.id) === recipeId);
 
         if (!recipe) return;
 
@@ -111,7 +108,8 @@ const displayRecipes = (recipeArray) => {
 // fetch recipes
 //===============================
 
-let recipes = [];
+// global variable to store all recipes
+let results = []; 
 
 const fetchData = async () => {
     try {
@@ -135,12 +133,12 @@ const fetchData = async () => {
     console.log("API response:", data);
 
     // check the data is entered correctly
-    if (data.recipes && Array.isArray(data.recipes)) {
-        recipes = data.recipes;
-        displayRecipes(data.recipes);
+    if (data.results && Array.isArray(data.results)) {
+        results = data.results;
+        displayRecipes(data.results);
         searchInput.addEventListener("input", filterSearchResults); // enable search after data is loaded
     } else {
-        container.innerHTML = "<p>No recipes found. Check your API key or quota.</p>";
+        container.innerHTML = `<p class="no-results">No recipes found 🥲 Check your API key or quota.</p>`;
     }
 
     } catch (error) {
@@ -152,8 +150,8 @@ const fetchData = async () => {
 // API error message
 const showApiLimitMessage = () => {
     container.innerHTML = `
-    <p class="api-error">
-        ⚠️ API limit reached for today.<br>
+    <p class="no-results">
+        ⚠️ API limit reached for today ⚠️<br>
         Please try again tomorrow.
     </p>
     `;
@@ -162,8 +160,8 @@ const showApiLimitMessage = () => {
 // normal error message
 const showErrorMessage = () => {
     container.innerHTML = `
-        <p class="api-error">
-        Something went wrong while fetching recipes.<br>
+        <p class="no-results">
+        Something went wrong while fetching recipes 🥲<br>
         Please try again later.
         </p>
     `;
@@ -263,7 +261,7 @@ sortBtn.forEach(sortButton => {
 
 // main function : filter + sort
 const applyKitchenFilters = () => {
-    let filtered = [...recipes]; // make a copy of all recipes
+    let filtered = [...results]; // make a copy of all recipes 
 
     //apply filters
     if (activeFilters.length > 0) {
@@ -294,14 +292,14 @@ const applyKitchenFilters = () => {
 // pick a random recipe
 //===============================
 
-// change the color when clicked
+// change the color of the button when clicked
 randomBtn.addEventListener("click", () => {
     randomBtn.classList.toggle("active");
 })
 
 randomBtn.addEventListener("click", () => {
-    const randomIndex = Math.floor(Math.random() * recipes.length);
-    const randomRecipe = recipes[randomIndex];
+    const randomIndex = Math.floor(Math.random() * results.length); 
+    const randomRecipe = results[randomIndex]; 
     displayRecipes([randomRecipe])
 })
 
