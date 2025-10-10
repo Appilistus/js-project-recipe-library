@@ -1,4 +1,6 @@
-const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
+// const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
+const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=5b0eb7cae7ef4a20af3202de42e39e78&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
+
 
 const allBtn = document.getElementById("all")
 const filterBtn = document.querySelectorAll(".filter-btn")
@@ -11,7 +13,7 @@ const container = document.getElementById("recipe-container")
 allBtn.classList.add("active") //default select
 
 //===============================
-// like button
+// like button - add recipes to favorites
 //===============================
 
 // save favorite recipes in localStorage
@@ -22,12 +24,13 @@ const attachLikeEvents =() => {
 
     likeButtons.forEach(button => {
         button.addEventListener("click", () => {
-        const card = button.closest(".recipe-card");
-        const recipeId = String(card.dataset.id);
-        const recipe = results.find(r => String(r.id) === recipeId);
+        const card = button.closest(".recipe-card"); // find the closest recipe card
+        const recipeId = String(card.dataset.id); // get the recipe ID from card's data-id and turn it into string
+        const recipe = results.find(r => String(r.id) === recipeId); // find the recipe object from results array that has the same ID
 
-        if (!recipe) return;
+        if (!recipe) return; // if recipe not found, exit
 
+        // check if the recipe is already in favorites
         if (favorites.some(fav => String(fav.id) === recipeId)) {
             // remove recipe if it is already liked
             favorites = favorites.filter(fav => String(fav.id) !== recipeId);
@@ -167,25 +170,6 @@ const showErrorMessage = () => {
     `;
 };
 
-// ------------import backup data-----------------------------------------
-
-// // Global backup data variable
-// import { backupRecipes } from "./backup.js"
-
-// // Global backup data variable
-// console.log("backup data loaded", backupRecipes);
-
-// let recipes = []; 
-
-// const fetchData = async () => {
-//     try {
-//         recipes = backupRecipes.recipes;
-//         displayRecipes(recipes);
-//     } catch (error) {
-//         console.error("Error fetching data:", error);
-//     }
-// };
-//------------------------------------------------------------------------
 
 fetchData();
 
@@ -315,7 +299,7 @@ const noResultsMessage = document.getElementById("no-results");
 const showSearchResult = (target) => target.style.display = "";
 const hideSearchResult = (target) => target.style.display = "none";
 
-// filter search results by keyword
+// search recipes by keyword
 const filterSearchResults = () => {
     const keyword = searchInput.value.trim().toLowerCase();
     const searchTargets = document.querySelectorAll('.recipe-card');
@@ -323,6 +307,7 @@ const filterSearchResults = () => {
 
     searchTargets.forEach((target) => {
         const text = target.textContent.toLowerCase();
+        // check if the keyword is in the text content and show/hide the recipe card
         if (text.includes(keyword)) {
             showSearchResult(target);
             matchFound = true;
@@ -339,5 +324,6 @@ const filterSearchResults = () => {
     }
 };
 
+// add event listener to the search input
 searchInput.addEventListener("input", filterSearchResults);
 
