@@ -68,6 +68,11 @@ favorite recipes button
     cursor: pointer;
 }
 
+.favorites:hover {
+    border: 2px solid #0018a4;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+}
+
 /* ======================================
 search form
 ======================================= */
@@ -126,6 +131,7 @@ style for the buttons
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+    gap: 30px;
 }
 
 .filter-container,
@@ -300,6 +306,7 @@ style for recipe cards
     margin-top: 100px;
     font-size: 2rem;
     color: #555;
+    display: none;
 }
 
 /* ======================================
