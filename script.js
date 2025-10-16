@@ -1,4 +1,4 @@
-// const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
+const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=e1711b2ca9f84dec882725da3bd3acfd&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
 // const URL = "https://api.spoonacular.com/recipes/complexSearch?number=20&apiKey=5b0eb7cae7ef4a20af3202de42e39e78&cuisine=Thai,Mexican,Mediterranean,Indian&addRecipeInformation=true&addRecipeInstructions=true&fillIngredients=true"
 
 
