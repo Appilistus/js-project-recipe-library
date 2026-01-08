@@ -48,6 +48,3 @@ This project uses the [Spoonacular API](https://spoonacular.com/food-api).
 
 **Endpoints used:**
 *   `GET /recipes/complexSearch`: To fetch recipes with filtering, sorting, and instruction details.
-
-## 📝 License
-This project is open source and available under the [MIT License](LICENSE).
